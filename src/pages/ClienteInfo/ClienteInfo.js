@@ -1,5 +1,7 @@
-// ClienteInfo.js
 import { FaChevronDown } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { BsFillSendFill } from "react-icons/bs";
+
 import React, { useEffect, useState } from "react";
 import emailjs from "emailjs-com"; // Importe a biblioteca emailjs-com
 import "./ClienteInfo.css";
@@ -22,8 +24,8 @@ function ClienteInfo() {
     }));
   };
 
+  // Remove o cadastro do localStorage
   const handleDeleteCadastro = (index) => {
-    // Remove o cadastro do localStorage
     const updatedCadastros = [...cadastros];
     updatedCadastros.splice(index, 1);
     localStorage.setItem("cadastros", JSON.stringify(updatedCadastros));
@@ -147,12 +149,14 @@ function ClienteInfo() {
                       className="btn-send"
                       onClick={() => handleEnviarEmail(index)}
                     >
+                      <BsFillSendFill />
                       Enviar E-mail de Notificação
                     </button>
                     <button
                       className="btn-delete"
                       onClick={() => handleDeleteCadastro(index)}
                     >
+                      <FaRegTrashAlt />
                       Deletar
                     </button>
                   </div>
