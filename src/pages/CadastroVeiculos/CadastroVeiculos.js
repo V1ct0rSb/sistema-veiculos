@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import "./CadastroVeiculos.css";
 
 export default function CadastroVeiculos() {
@@ -11,11 +11,13 @@ export default function CadastroVeiculos() {
     cor: "",
   });
 
-  const [dadosPeca, setDadosPeca] = useState({
-    nome: "",
-    numeroSerie: "",
-    descricao: "",
-  });
+  const [pecas, setPecas] = useState([
+    {
+      nome: "",
+      numeroSerie: "",
+      descricao: "",
+    },
+  ]);
 
   const [dadosRevisao, setDadosRevisao] = useState({
     dataRevisao: "",
@@ -33,8 +35,13 @@ export default function CadastroVeiculos() {
     setDadosVeiculo({ ...dadosVeiculo, [e.target.name]: e.target.value });
   }
 
-  function handleChangePeca(e) {
-    setDadosPeca({ ...dadosPeca, [e.target.name]: e.target.value });
+  function handleChangePeca(e, index) {
+    const novasPecas = [...pecas];
+    novasPecas[index] = {
+      ...novasPecas[index],
+      [e.target.name]: e.target.value,
+    };
+    setPecas(novasPecas);
   }
 
   function handleChangeRevisao(e) {
@@ -48,56 +55,49 @@ export default function CadastroVeiculos() {
     });
   }
 
+  // Adicionar nova peça ao estado
+  function adicionarPeca() {
+    setPecas([...pecas, { nome: "", numeroSerie: "", descricao: "" }]);
+  }
+
   // Manipulador de envio do formulário
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Enviar e-mail de confirmação de cadastro do cliente
-    const emailService = "service_ky5altd"; // Substitua pelo seu serviço de e-mail
-    const templateId = "template_ckver5h"; // Substitua pelo ID do seu template de e-mail
-    const publicKey = "bVO4o_nFWQ3h_vCRs"; // Substitua pela sua Public Key
-
-    const templateParams = {
-      to_name: dadosProprietario.nome,
-      message:
-        "É com grande satisfação que confirmamos o seu cadastro no Sistema de Gerenciamento de Veículos e Manutenção. Estamos à disposição para qualquer suporte necessário.",
-      email: dadosProprietario.email,
+    // Adicionar o novo registro ao array de peças
+    const novoCadastro = {
+      dadosVeiculo,
+      pecas, // <-- Está correto, pois você já tem um array de peças
+      dadosRevisao,
+      dadosProprietario,
     };
 
-    emailjs.send(emailService, templateId, templateParams, publicKey).then(
-      function (response) {
-        console.log(
-          "E-mail enviado com sucesso!",
-          response.status,
-          response.text
-        );
-      },
-      function (error) {
-        console.error("Erro ao enviar o e-mail:", error);
-      }
-    );
+    // Enviar e-mail de confirmação de cadastro do cliente
+    // const emailService = "service_ky5altd"; // Substitua pelo seu serviço de e-mail
+    // const templateId = "template_ckver5h"; // Substitua pelo ID do seu template de e-mail
+    // const publicKey = "bVO4o_nFWQ3h_vCRs"; // Substitua pela sua Public Key
 
-    // Verificar se os campos obrigatórios estão preenchidos
-    // if (
-    //   !dadosVeiculo.placa ||
-    //   !dadosVeiculo.modelo ||
-    //   !dadosVeiculo.anoFabricacao ||
-    //   !dadosVeiculo.cor ||
-    //   !dadosPeca.nome ||
-    //   !dadosPeca.numeroSerie ||
-    //   !dadosPeca.descricao ||
-    //   !dadosRevisao.dataRevisao ||
-    //   !dadosProprietario.nome ||
-    //   !dadosProprietario.endereco ||
-    //   !dadosProprietario.email ||
-    //   !dadosProprietario.telefone
-    // ) {
-    //   alert(
-    //     "Por favor, preencha todos os campos antes de enviar o formulário."
-    //   );
-    //   return;
-    // }
+    // const templateParams = {
+    //   to_name: dadosProprietario.nome,
+    //   message:
+    //     "É com grande satisfação que confirmamos o seu cadastro no Sistema de Gerenciamento de Veículos e Manutenção. Estamos à disposição para qualquer suporte necessário.",
+    //   email: dadosProprietario.email,
+    // };
 
+    // emailjs.send(emailService, templateId, templateParams, publicKey).then(
+    //   function (response) {
+    //     console.log(
+    //       "E-mail enviado com sucesso!",
+    //       response.status,
+    //       response.text
+    //     );
+    //   },
+    //   function (error) {
+    //     console.error("Erro ao enviar o e-mail:", error);
+    //   }
+    // );
+
+    // Limpa os campos do formulário ao ser enviado
     // Limpa os campos do formulário ao ser enviado
     setDadosVeiculo({
       placa: "",
@@ -105,11 +105,13 @@ export default function CadastroVeiculos() {
       anoFabricacao: "",
       cor: "",
     });
-    setDadosPeca({
-      nome: "",
-      numeroSerie: "",
-      descricao: "",
-    });
+    setPecas([
+      {
+        nome: "",
+        numeroSerie: "",
+        descricao: "",
+      },
+    ]);
     setDadosRevisao({
       dataRevisao: "",
     });
@@ -120,11 +122,45 @@ export default function CadastroVeiculos() {
       telefone: "",
     });
 
+    // Recupera os dados existentes do localStorage
+    const storedCadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+
+    // Adiciona o novo registro aos dados existentes
+    storedCadastros.push(novoCadastro);
+
+    // Armazena os dados atualizados no localStorage
+    localStorage.setItem("cadastros", JSON.stringify(storedCadastros));
+
     // Lógica para enviar os dados para o backend ou realizar outras operações necessárias
     console.log("Dados do Veículo:", dadosVeiculo);
-    console.log("Dados da Peça:", dadosPeca);
+    console.log("Dados da Peça:", pecas); // <-- Agora, você deve usar 'pecas' em vez de 'dadosPeca'
     console.log("Dados de Revisão:", dadosRevisao);
     console.log("Dados do Proprietário:", dadosProprietario);
+
+    // Verificação de e-mail válido
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (!emailRegex.test(dadosProprietario.email)) {
+    //   alert("Por favor, insira um e-mail válido.");
+    //   return;
+    // }
+
+    // Verificação de placa de veículo válida
+    // const placaRegex = /^[A-Za-z]{3}-\d{4}$/;
+    // if (!placaRegex.test(dadosVeiculo.placa)) {
+    //   alert(
+    //     "Por favor, insira uma placa de veículo válida no formato ABC-1234."
+    //   );
+    //   return;
+    // }
+
+    // Verificação de telefone válido (formato: (00) 00000-0000)
+    // const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+    // if (!telefoneRegex.test(dadosProprietario.telefone)) {
+    //   alert(
+    //     "Por favor, insira um número de telefone válido no formato (00) 00000-0000."
+    //   );
+    //   return;
+    // }
   }
 
   return (
@@ -138,6 +174,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: ABC-1234"
           value={dadosVeiculo.placa}
           onChange={handleChangeVeiculo}
+          required
         />
       </label>
       <label>
@@ -148,6 +185,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: Gol"
           value={dadosVeiculo.modelo}
           onChange={handleChangeVeiculo}
+          required
         />
       </label>
       <label>
@@ -168,50 +206,61 @@ export default function CadastroVeiculos() {
           placeholder="Ex: Preto"
           value={dadosVeiculo.cor}
           onChange={handleChangeVeiculo}
+          required
         />
       </label>
-
       <h2>Cadastro de Peça</h2>
-      <label>
-        Nome:
-        <input
-          type="text"
-          name="nome"
-          placeholder="Ex: Pneu"
-          value={dadosPeca.nome}
-          onChange={handleChangePeca}
-        />
-      </label>
-      <label>
-        Número de Série:
-        <input
-          type="text"
-          name="numeroSerie"
-          placeholder="Ex: 123456789"
-          value={dadosPeca.numeroSerie}
-          onChange={handleChangePeca}
-        />
-      </label>
-      <label>
-        Descrição:
-        <input
-          type="text"
-          name="descricao"
-          placeholder="Insira uma descrição breve da peça"
-          value={dadosPeca.descricao}
-          onChange={handleChangePeca}
-        />
-      </label>
+      {pecas.map((peca, index) => (
+        <div key={index}>
+          <label>
+            Nome:
+            <input
+              type="text"
+              name="nome"
+              placeholder="Ex: Pneu"
+              value={peca.nome}
+              onChange={(e) => handleChangePeca(e, index)}
+              required
+            />
+          </label>
+          <label>
+            Número de Série:
+            <input
+              type="text"
+              name="numeroSerie"
+              placeholder="Ex: 123456789"
+              value={peca.numeroSerie}
+              onChange={(e) => handleChangePeca(e, index)}
+              required
+            />
+          </label>
+          <label>
+            Descrição:
+            <input
+              type="text"
+              name="descricao"
+              placeholder="Insira uma descrição breve da peça"
+              value={peca.descricao}
+              onChange={(e) => handleChangePeca(e, index)}
+              required
+            />
+          </label>
+        </div>
+      ))}
+      <button type="button" onClick={adicionarPeca}>
+        Adicionar Peça
+      </button>
 
       <h2>Cadastro de Data de Revisão</h2>
       <label>
         Data de Revisão:
         <input
-          type="text"
+          type="date"
           name="dataRevisao"
           placeholder="Ex: 05/12/2023"
           value={dadosRevisao.dataRevisao}
           onChange={handleChangeRevisao}
+          required
         />
       </label>
 
@@ -224,6 +273,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: Paulo Oliveira"
           value={dadosProprietario.nome}
           onChange={handleChangeProprietario}
+          required
         />
       </label>
       <label>
@@ -234,6 +284,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: Rua da Sorte, 777"
           value={dadosProprietario.endereco}
           onChange={handleChangeProprietario}
+          required
         />
       </label>
       <label>
@@ -244,6 +295,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: exemplo@email.com"
           value={dadosProprietario.email}
           onChange={handleChangeProprietario}
+          required
         />
       </label>
       <label>
@@ -254,6 +306,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: (00) 00000-0000"
           value={dadosProprietario.telefone}
           onChange={handleChangeProprietario}
+          required
         />
       </label>
 

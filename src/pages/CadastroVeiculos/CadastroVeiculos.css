@@ -1,8 +1,11 @@
 form {
-  max-width: 700px;
-  margin: 30px auto;
-  border: 1px solid red;
+  max-width: 700px; /* Increase the max-width for better readability */
+  margin: 0 auto;
   padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #F2FFE9;
 }
 
 h2 {

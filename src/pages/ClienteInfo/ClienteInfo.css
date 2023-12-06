@@ -1,0 +1,105 @@
+/* ClienteInfo.css */
+
+.cliente-info-container {
+  max-width: 700px; /* Increase the max-width for better readability */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f2ffe9;
+}
+
+.cadastro-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.dropdown-title {
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Add smooth color transition */
+}
+
+.group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #00a9ff; /* Add a subtle background color */
+}
+.group-title:hover {
+  background: #89cff3; /* Darken the color on hover */
+}
+
+.cadastro-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cliente-item {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #dfdfdf;
+}
+
+.title {
+  text-align: center;
+  background-color: #a0e9ff; /* Add a subtle background color */
+  padding: 10px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.veiculo-list,
+.peca-list,
+.revisao-list,
+.proprietario-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+span {
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+.group-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-send {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+  text-align: center;
+}
+.btn-send:hover {
+  background-color: #327435;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.btn-delete:hover {
+  background-color: #b52b1b;
+}
