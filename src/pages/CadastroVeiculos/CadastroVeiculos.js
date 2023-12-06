@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import "./CadastroVeiculos.css";
 
 export default function CadastroVeiculos() {
@@ -51,13 +52,53 @@ export default function CadastroVeiculos() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Lógica para enviar os dados para o backend ou realizar outras operações necessárias
-    console.log("Dados do Veículo:", dadosVeiculo);
-    console.log("Dados da Peça:", dadosPeca);
-    console.log("Dados de Revisão:", dadosRevisao);
-    console.log("Dados do Proprietário:", dadosProprietario);
+    // Enviar e-mail de confirmação de cadastro do cliente
+    const emailService = "service_ky5altd"; // Substitua pelo seu serviço de e-mail
+    const templateId = "template_ckver5h"; // Substitua pelo ID do seu template de e-mail
+    const publicKey = "bVO4o_nFWQ3h_vCRs"; // Substitua pela sua Public Key
 
-    // Limpa os campos do formulário
+    const templateParams = {
+      to_name: dadosProprietario.nome,
+      message:
+        "É com grande satisfação que confirmamos o seu cadastro no Sistema de Gerenciamento de Veículos e Manutenção. Estamos à disposição para qualquer suporte necessário.",
+      email: dadosProprietario.email,
+    };
+
+    emailjs.send(emailService, templateId, templateParams, publicKey).then(
+      function (response) {
+        console.log(
+          "E-mail enviado com sucesso!",
+          response.status,
+          response.text
+        );
+      },
+      function (error) {
+        console.error("Erro ao enviar o e-mail:", error);
+      }
+    );
+
+    // Verificar se os campos obrigatórios estão preenchidos
+    // if (
+    //   !dadosVeiculo.placa ||
+    //   !dadosVeiculo.modelo ||
+    //   !dadosVeiculo.anoFabricacao ||
+    //   !dadosVeiculo.cor ||
+    //   !dadosPeca.nome ||
+    //   !dadosPeca.numeroSerie ||
+    //   !dadosPeca.descricao ||
+    //   !dadosRevisao.dataRevisao ||
+    //   !dadosProprietario.nome ||
+    //   !dadosProprietario.endereco ||
+    //   !dadosProprietario.email ||
+    //   !dadosProprietario.telefone
+    // ) {
+    //   alert(
+    //     "Por favor, preencha todos os campos antes de enviar o formulário."
+    //   );
+    //   return;
+    // }
+
+    // Limpa os campos do formulário ao ser enviado
     setDadosVeiculo({
       placa: "",
       modelo: "",
@@ -78,6 +119,12 @@ export default function CadastroVeiculos() {
       email: "",
       telefone: "",
     });
+
+    // Lógica para enviar os dados para o backend ou realizar outras operações necessárias
+    console.log("Dados do Veículo:", dadosVeiculo);
+    console.log("Dados da Peça:", dadosPeca);
+    console.log("Dados de Revisão:", dadosRevisao);
+    console.log("Dados do Proprietário:", dadosProprietario);
   }
 
   return (
