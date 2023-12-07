@@ -19,6 +19,7 @@ function ClienteInfo() {
 
   const [expandedItems, setExpandedItems] = useState({});
 
+  // Dropdown 
   const handleDropdownToggle = (index) => {
     setExpandedItems((prevExpandedItems) => ({
       ...prevExpandedItems,

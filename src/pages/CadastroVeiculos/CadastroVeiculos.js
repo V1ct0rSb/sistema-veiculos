@@ -209,6 +209,7 @@ export default function CadastroVeiculos() {
           placeholder="Ex: 2020"
           value={dadosVeiculo.anoFabricacao}
           onChange={handleChangeVeiculo}
+          required
         />
       </label>
       <label>
