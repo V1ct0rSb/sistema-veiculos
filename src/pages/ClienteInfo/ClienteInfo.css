@@ -1,5 +1,5 @@
 .cliente-info-container {
-  max-width: 700px; /* Increase the max-width for better readability */
+  max-width: 700px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -8,34 +8,44 @@
   background-color: #f2ffe9;
 }
 
+/* Titulo Principal */
 .cadastro-title {
   font-size: 30px;
   margin-bottom: 20px;
 }
 
-.dropdown-title {
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  transition: color 0.3s ease; /* Add smooth color transition */
-}
-
+/* Barra do dropdown  */
 .group-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  background-color: #00a9ff; /* Add a subtle background color */
+  background-color: #00a9ff;
 }
 .group-title:hover {
-  background: #89cff3; /* Darken the color on hover */
+  background: #89cff3;
 }
 
+/* Titulo do dropdown  */
+.dropdown-title {
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Emoji de descer do dropdown*/
+.down {
+  margin-right: 20px;
+}
+
+/* Lista de cadastros  */
 .cadastro-list {
   list-style: none;
   padding: 0;
 }
 
+/* Lugar onde fica os itens do dropdown */
 .cliente-item {
   margin-bottom: 20px;
   border-radius: 5px;
@@ -43,9 +53,10 @@
   border: 1px solid #dfdfdf;
 }
 
+/* Titulo Principal dos campos de cadastro  */
 .title {
   text-align: center;
-  background-color: #a0e9ff; /* Add a subtle background color */
+  background-color: #a0e9ff;
   padding: 10px;
   font-weight: bolder;
   margin-bottom: 10px;
@@ -61,11 +72,13 @@
   margin: 15px 0;
 }
 
+/* Dados */
 span {
   margin-left: 15px;
   font-weight: bold;
 }
 
+/* Botoes */
 .group-button {
   display: flex;
   justify-content: space-around;
@@ -74,6 +87,7 @@ span {
   margin-top: 30px;
 }
 
+/* Botão de enviar */
 .btn-send {
   background-color: #4caf50;
   color: white;
@@ -92,8 +106,9 @@ span {
   background-color: #327435;
 }
 
+/* Botão de remover */
 .btn-delete {
-  background-color: #f44336;
+  background-color: #ff0000;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -106,7 +121,6 @@ span {
   justify-content: center;
   gap: 10px;
 }
-
 .btn-delete:hover {
-  background-color: #b52b1b;
+  background-color: #cc0000;
 }

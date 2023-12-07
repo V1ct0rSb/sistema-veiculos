@@ -1,16 +1,18 @@
+import React, { useEffect, useState } from "react";
+// Biblioteca emailjs-com para as notificações por e-mail
+import emailjs from "emailjs-com";
+// CSS
+import "./ClienteInfo.css";
+// React Icons
 import { FaChevronDown } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { BsFillSendFill } from "react-icons/bs";
 
-import React, { useEffect, useState } from "react";
-import emailjs from "emailjs-com"; // Importe a biblioteca emailjs-com
-import "./ClienteInfo.css";
-
 function ClienteInfo() {
   const [cadastros, setCadastros] = useState([]);
 
+  // Recupera os dados do localStorage
   useEffect(() => {
-    // Recupera os dados do localStorage
     const storedCadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
     setCadastros(storedCadastros);
   }, []);
@@ -32,7 +34,7 @@ function ClienteInfo() {
     setCadastros(updatedCadastros);
   };
 
-  // Função para enviar e-mail de notificação
+  // Função para enviar e-mail de notificação quando terminar de revisar o carro
   const handleEnviarEmail = (index) => {
     const cadastro = cadastros[index];
 
@@ -78,12 +80,12 @@ function ClienteInfo() {
                 <div className="dropdown-title">
                   Cliente {index + 1} - {cadastro.dadosProprietario.nome}{" "}
                 </div>
-                <FaChevronDown />
+                <span className="down">
+                  <FaChevronDown />
+                </span>
               </div>
               {expandedItems[index] && (
                 <>
-                  <div className="title">Data e Hora do Cadastro</div>{" "}
-                  {new Date(cadastro.dataCadastro).toLocaleString()}
                   <div className="title">Dados do Veículo</div>
                   <ul className="veiculo-list">
                     <li>

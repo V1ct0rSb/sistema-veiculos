@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 // import emailjs from "emailjs-com";
 import "./CadastroVeiculos.css";
+import { IoAddSharp } from "react-icons/io5";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 export default function CadastroVeiculos() {
-  // Estados para armazenar os dados do formulário
+  // Definindo os estados para cada campo do formulário
   const [dadosVeiculo, setDadosVeiculo] = useState({
     placa: "",
     modelo: "",
@@ -30,7 +32,7 @@ export default function CadastroVeiculos() {
     telefone: "",
   });
 
-  // Manipuladores de eventos para atualizar os estados conforme o usuário preenche o formulário
+  // Controlando os eventos para atualizar os estados conforme o usuário preenche o formulário
   function handleChangeVeiculo(e) {
     setDadosVeiculo({ ...dadosVeiculo, [e.target.name]: e.target.value });
   }
@@ -55,19 +57,31 @@ export default function CadastroVeiculos() {
     });
   }
 
-  // Adicionar nova peça ao estado
+  // Função para add peças
   function adicionarPeca() {
     setPecas([...pecas, { nome: "", numeroSerie: "", descricao: "" }]);
   }
 
-  // Manipulador de envio do formulário
+  // Remove a peça do cadastro
+  const handleRemovePeca = (index) => {
+    // Ensure that there is always at least one peça
+    if (pecas.length === 1) {
+      alert("Você deve ter pelo menos uma peça cadastrada.");
+      return;
+    }
+
+    const updatedPecas = [...pecas];
+    updatedPecas.splice(index, 1);
+    setPecas(updatedPecas);
+  };
+
+  // Envio do formulário
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Adicionar o novo registro ao array de peças
     const novoCadastro = {
       dadosVeiculo,
-      pecas, // <-- Está correto, pois você já tem um array de peças
+      pecas,
       dadosRevisao,
       dadosProprietario,
     };
@@ -97,8 +111,7 @@ export default function CadastroVeiculos() {
     //   }
     // );
 
-    // Limpa os campos do formulário ao ser enviado
-    // Limpa os campos do formulário ao ser enviado
+    // Limpar os campos do formulário ao ser enviado
     setDadosVeiculo({
       placa: "",
       modelo: "",
@@ -245,10 +258,18 @@ export default function CadastroVeiculos() {
               required
             />
           </label>
+          <button
+            type="button"
+            className="btn-remove"
+            onClick={() => handleRemovePeca(index)}
+          >
+            <FaRegTrashAlt />
+            Remover Peça
+          </button>
         </div>
       ))}
-      <button type="button" onClick={adicionarPeca}>
-        Adicionar Peça
+      <button type="button" className="btn-add" onClick={adicionarPeca}>
+        <IoAddSharp /> Adicionar Peça
       </button>
 
       <h2>Cadastro de Data de Revisão</h2>
@@ -310,7 +331,9 @@ export default function CadastroVeiculos() {
         />
       </label>
 
-      <button type="submit">Cadastrar</button>
+      <button type="submit" className="btn-submit">
+        Cadastrar
+      </button>
     </form>
   );
 }
