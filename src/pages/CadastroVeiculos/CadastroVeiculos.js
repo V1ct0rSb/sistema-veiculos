@@ -4,6 +4,8 @@ import "./CadastroVeiculos.css";
 import { IoAddSharp } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
 
+import axios from "axios";
+
 export default function CadastroVeiculos() {
   // Definindo os estados para cada campo do formulário
   const [dadosVeiculo, setDadosVeiculo] = useState({
@@ -86,6 +88,14 @@ export default function CadastroVeiculos() {
       dadosProprietario,
     };
 
+    axios
+      .post("http://localhost:3001/cadastros", novoCadastro)
+      .then((response) => {
+        console.log("Cadastro enviado com sucesso:", response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar cadastro:", error);
+      });
     // Enviar e-mail de confirmação de cadastro do cliente
     // const emailService = "service_ky5altd"; // Substitua pelo seu serviço de e-mail
     // const templateId = "template_ckver5h"; // Substitua pelo ID do seu template de e-mail
@@ -135,18 +145,9 @@ export default function CadastroVeiculos() {
       telefone: "",
     });
 
-    // Recupera os dados existentes do localStorage
-    const storedCadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
-
-    // Adiciona o novo registro aos dados existentes
-    storedCadastros.push(novoCadastro);
-
-    // Armazena os dados atualizados no localStorage
-    localStorage.setItem("cadastros", JSON.stringify(storedCadastros));
-
     // Lógica para enviar os dados para o backend ou realizar outras operações necessárias
     console.log("Dados do Veículo:", dadosVeiculo);
-    console.log("Dados da Peça:", pecas); // <-- Agora, você deve usar 'pecas' em vez de 'dadosPeca'
+    console.log("Dados da Peça:", pecas);
     console.log("Dados de Revisão:", dadosRevisao);
     console.log("Dados do Proprietário:", dadosProprietario);
 

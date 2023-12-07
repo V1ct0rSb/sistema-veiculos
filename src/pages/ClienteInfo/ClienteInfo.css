@@ -1,6 +1,8 @@
+/* ClienteInfo.css */
+
 .cliente-info-container {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -8,119 +10,63 @@
   background-color: #f2ffe9;
 }
 
-/* Titulo Principal */
-.cadastro-title {
-  font-size: 30px;
-  margin-bottom: 20px;
+.cliente-info-title {
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-/* Barra do dropdown  */
-.group-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  background-color: #00a9ff;
-}
-.group-title:hover {
-  background: #89cff3;
-}
-
-/* Titulo do dropdown  */
-.dropdown-title {
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-/* Emoji de descer do dropdown*/
-.down {
-  margin-right: 20px;
-}
-
-/* Lista de cadastros  */
-.cadastro-list {
+.cliente-group-title {
   list-style: none;
   padding: 0;
 }
 
-/* Lugar onde fica os itens do dropdown */
 .cliente-item {
-  margin-bottom: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-  border: 1px solid #dfdfdf;
-}
-
-/* Titulo Principal dos campos de cadastro  */
-.title {
-  text-align: center;
-  background-color: #a0e9ff;
-  padding: 10px;
-  font-weight: bolder;
+  border: 1px solid #ccc;
   margin-bottom: 10px;
-  font-size: 18px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-.veiculo-list,
-.peca-list,
-.revisao-list,
-.proprietario-list {
+.cliente-dropdown-title h3 {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cliente-dropdown-title {
+  background-color: #00a9ff;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.cliente-dropdown-title:hover {
+  background-color: #89cff3;
+}
+
+.cliente-cadastro-list {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.cliente-cadastro-list h3 {
+  background-color: #a0e9ff;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.cliente-peca-list {
   list-style: none;
   padding: 0;
-  margin: 15px 0;
 }
 
-/* Dados */
+.cliente-peca-list li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
 span {
-  margin-left: 15px;
-  font-weight: bold;
-}
-
-/* Botoes */
-.group-button {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-top: 30px;
-}
-
-/* Botão de enviar */
-.btn-send {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bolder;
-  text-align: center;
-
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.btn-send:hover {
-  background-color: #327435;
-}
-
-/* Botão de remover */
-.btn-delete {
-  background-color: #ff0000;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bolder;
-  text-align: center;
-
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.btn-delete:hover {
-  background-color: #cc0000;
+  margin-bottom: 100px;
+  padding-bottom: 100px;
 }
