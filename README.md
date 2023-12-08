@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# 🚗 Sistema de Gerenciamento de Veículos e Manutenção 🔧
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<h2>🌐 Introdução</h2>
+<p>Este documento apresenta a documentação do projeto de TCC desenvolvido, denominado "Sistema de Gerenciamento de Veículos e Manutenção". O sistema tem como objetivo oferecer uma solução eficiente para o cadastro e gerenciamento de informações relacionadas a veículos, peças, revisões e proprietários.</p>
 
-In the project directory, you can run:
+<h2>🛠 Tecnologias Utilizadas</h2>
+<ul>
+  <li><strong>Frontend:</strong> React</li>
+  <li><strong>Backend:</strong> Node.js com Express</li>
+  <li><strong>Banco de Dados:</strong> MySQL</li>
+  <li><strong>Comunicação entre Frontend e Backend:</strong> Axios</li>
+  <li><strong>Envio de E-mails:</strong> Email.js</li>
+  <li><strong>Estilização:</strong> CSS</li>
+</ul>
 
-### `npm start`
+<h2>🚀 Funcionalidades do Sistema</h2>
+<ol>
+  <li>Cadastro de Veículos</li>
+  <li>Cadastro de Peças</li>
+  <li>Cadastro de Data de Revisão</li>
+  <li>Cadastro de Proprietários</li>
+  <li>Envio de E-mails de Confirmação</li>
+  <li>Marcação de Trabalho Concluído</li>
+</ol>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2>🔧 Componentes do Projeto</h2>
+<ol>
+  <li><code>CadastroVeiculos.js</code></li>
+  <li><code>ClienteInfo.js</code></li>
+  <li><code>db.js</code></li>
+  <li><code>server.js</code></li>
+</ol>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h2>⚙ Configuração e Execução</h2>
+<ol>
+  <li>Clone o repositório para sua máquina local.</li>
+  <li>Certifique-se de ter o Node.js e o MySQL instalados.</li>
+  <li>Configure o banco de dados executando os scripts fornecidos na pasta <code>db_scripts</code>.</li>
+  <li>Execute <code>npm install</code> nas pastas <code>frontend</code> e <code>backend</code> para instalar as dependências.</li>
+  <li>Inicie o servidor backend com <code>npm node.js</code> na pasta <code>server</code>.</li>
+  <li>Inicie o aplicativo frontend com <code>npm start</code> na pasta <code>frontend</code>.</li>
+</ol>
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<h2>🎓 Conclusão</h2>
+<p>O Sistema de Gerenciamento de Veículos e Manutenção visa simplificar o processo de registro e acompanhamento de informações relacionadas a veículos, proporcionando uma gestão eficiente para proprietários e profissionais responsáveis pela manutenção. O projeto demonstra a integração entre frontend e backend, o uso de um banco de dados relacional e a implementação de funcionalidades práticas para o contexto proposto.</p>
