@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 //Importando o axios
 import axios from "axios";
-// Importando o CSS
-import "./ClienteInfo.css";
-// Biblioteca de notificação de e-mail
 import emailjs from "emailjs-com";
 // Importando os ícones
 import { IoIosSend } from "react-icons/io";
+import { FaCheck } from "react-icons/fa";
+// Importando o CSS
+import "./ClienteInfo.css";
 
 const ClienteInfo = () => {
   // Criando os estados para os dados do formulário
@@ -18,7 +18,7 @@ const ClienteInfo = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/cadastros");
-        console.log("Sucesso ao buscar dados do servido:", response.data);
+        console.log("Sucesso ao buscar dados do servidor:", response.data);
         setCadastros(response.data || []);
       } catch (error) {
         console.error("Erro ao buscar dados do servidor:", error);
@@ -66,6 +66,23 @@ const ClienteInfo = () => {
       );
   };
 
+  const handleTrabalhoConcluido = async () => {
+    try {
+      await axios.put(
+        `http://localhost:3001/cadastros/${selectedClientId}/concluir`
+      );
+      setCadastros((prevCadastros) =>
+        prevCadastros.map((cadastro) =>
+          cadastro.id === selectedClientId
+            ? { ...cadastro, status: "Concluido" }
+            : cadastro
+        )
+      );
+    } catch (error) {
+      console.error("Erro ao marcar o trabalho como concluído:", error);
+    }
+  };
+
   return (
     <div className="cliente-info-container">
       <h1 className="cliente-info-title">Informações do Cliente</h1>
@@ -80,7 +97,18 @@ const ClienteInfo = () => {
                 className="cliente-dropdown-title"
                 onClick={() => toggleDropdown(cadastro.id)}
               >
-                <h3>Cliente: {cadastro.id}</h3>
+                <div className="title-group">
+                  <h3>Cliente: {cadastro.id}</h3>
+                  <h3
+                    className={`status ${
+                      cadastro.status === "pendente"
+                        ? "text-yellow"
+                        : "text-green"
+                    }`}
+                  >
+                    {cadastro.status}
+                  </h3>
+                </div>
               </div>
 
               {selectedClientId === cadastro.id && (
@@ -113,13 +141,30 @@ const ClienteInfo = () => {
                       <p>Email: {proprietario.email}</p>
                       <p>Telefone: {proprietario.telefone}</p>
 
-                      <button
-                        className="btn-send"
-                        onClick={() => sendEmail(proprietario)}
-                      >
-                        <IoIosSend />
-                        Enviar Email
-                      </button>
+                      <div className="group">
+                        <button
+                          className="btn-send"
+                          onClick={() => sendEmail(proprietario)}
+                        >
+                          <IoIosSend />
+                          Enviar Email
+                        </button>
+
+                        <div className="status">
+                          {!cadastro.status ||
+                          cadastro.status === "pendente" ? (
+                            <button
+                              className="btn-trabalho-concluido"
+                              onClick={handleTrabalhoConcluido}
+                            >
+                              <FaCheck />
+                              Trabalho Concluído
+                            </button>
+                          ) : (
+                            <p>Status: {cadastro.status}</p>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>

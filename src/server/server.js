@@ -14,7 +14,7 @@ app.post("/cadastros", async (req, res) => {
 
   try {
     const [result] = await connection.execute(
-      "INSERT INTO dadosVeiculo (placa, modelo, anoFabricacao, cor) VALUES (?, ?, ?, ?)",
+      "INSERT INTO dadosVeiculo (placa, modelo, anoFabricacao, cor, status) VALUES (?, ?, ?, ?, 'pendente')",
       [
         novoCadastro.dadosVeiculo.placa,
         novoCadastro.dadosVeiculo.modelo,
@@ -94,6 +94,23 @@ app.get("/cadastros", async (req, res) => {
   } catch (error) {
     console.error("Erro ao recuperar cadastros:", error);
     res.status(500).send({ message: "Erro ao recuperar cadastros." });
+  }
+});
+
+// Pendente e Concluido
+app.put("/cadastros/:id/concluir", async (req, res) => {
+  const cadastroId = req.params.id;
+
+  try {
+    await connection.execute(
+      "UPDATE dadosVeiculo SET status = 'concluido' WHERE id = ?",
+      [cadastroId]
+    );
+
+    res.status(200).send({ message: "Trabalho concluído com sucesso." });
+  } catch (error) {
+    console.error("Erro ao concluir o trabalho:", error);
+    res.status(500).send({ message: "Erro ao concluir o trabalho." });
   }
 });
 

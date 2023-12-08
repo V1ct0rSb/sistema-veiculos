@@ -8,6 +8,12 @@
   background-color: #f2ffe9;
 }
 
+.title-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .cliente-info-title {
   color: #333;
   text-align: center;
@@ -91,6 +97,38 @@ span {
   cursor: pointer;
   font-weight: bolder;
 }
+.btn-send:hover {
+  background-color: #327435;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.status button {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bolder;
+}
+.status button:hover {
+  background-color: #327435;
+}
+
+.status p {
+  margin-top: 20px;
+}
 
 @media (max-width: 768px) {
   .cliente-info-container {
@@ -121,4 +159,12 @@ span {
   .btn-send {
     font-size: 15px;
   }
+}
+
+.text-yellow {
+  color: yellow;
+}
+
+.text-green {
+  color: rgb(77, 255, 0);
 }
