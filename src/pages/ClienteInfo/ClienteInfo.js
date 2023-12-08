@@ -66,6 +66,7 @@ const ClienteInfo = () => {
       );
   };
 
+  // Marcar o trabalho como concluído
   const handleTrabalhoConcluido = async () => {
     try {
       await axios.put(
