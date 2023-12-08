@@ -38,13 +38,14 @@
 }
 
 .cliente-dropdown-title {
-  background-color: #00a9ff;
+  background-color: #0022ff;
   padding: 8px;
   border-radius: 5px;
+  color: white;
 }
 
 .cliente-dropdown-title:hover {
-  background-color: #89cff3;
+  background-color: #01a5f7;
 }
 
 .cliente-cadastro-list {
