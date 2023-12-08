@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -56,10 +55,14 @@ app.post("/cadastros", async (req, res) => {
 
     res.status(201).send({ message: "Cadastro adicionado com sucesso." });
   } catch (error) {
-    console.error("Erro ao cadastrar veículo:", error);
-    res.status(500).send({ message: "Erro ao cadastrar veículo." });
+    console.error("Erro ao cadastrar informações do cliente:", error);
+    res
+      .status(500)
+      .send({ message: "Erro ao cadastrar informações do cliente." });
   }
 });
+
+// Aqui vai fazer o get de todos os cadastros
 app.get("/cadastros", async (req, res) => {
   try {
     const [veiculos] = await connection.execute("SELECT * FROM dadosVeiculo");
@@ -94,21 +97,6 @@ app.get("/cadastros", async (req, res) => {
   }
 });
 
-app.delete("/cadastros/:id", (req, res) => {
-  const { id } = req.params;
-  connection.query(
-    "DELETE FROM ClienteInfo WHERE id = ?",
-    [id],
-    (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send({ message: "Erro ao deletar o cadastro." });
-      } else {
-        res.status(200).send({ message: "Cadastro deletado com sucesso." });
-      }
-    }
-  );
-});
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

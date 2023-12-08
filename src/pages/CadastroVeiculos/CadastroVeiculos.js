@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-// import emailjs from "emailjs-com";
+// Biblioteca de notificação de e-mail
+import emailjs from "emailjs-com";
+// Importando o CSS
 import "./CadastroVeiculos.css";
+// Importando os ícones
 import { IoAddSharp } from "react-icons/io5";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 import axios from "axios";
 
 export default function CadastroVeiculos() {
-  // Definindo os estados para cada campo do formulário
+  // Criando os estados para os dados do formulário
   const [dadosVeiculo, setDadosVeiculo] = useState({
     placa: "",
     modelo: "",
@@ -59,14 +62,13 @@ export default function CadastroVeiculos() {
     });
   }
 
-  // Função para add peças
+  // Função para add campo de peças
   function adicionarPeca() {
     setPecas([...pecas, { nome: "", numeroSerie: "", descricao: "" }]);
   }
 
-  // Remove a peça do cadastro
+  // Remove o campo de peça
   const handleRemovePeca = (index) => {
-    // Ensure that there is always at least one peça
     if (pecas.length === 1) {
       alert("Você deve ter pelo menos uma peça cadastrada.");
       return;
@@ -81,6 +83,7 @@ export default function CadastroVeiculos() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    // Criar um objeto com os dados do cadastro
     const novoCadastro = {
       dadosVeiculo,
       pecas,
@@ -88,6 +91,7 @@ export default function CadastroVeiculos() {
       dadosProprietario,
     };
 
+    // Enviar os dados para o backend
     axios
       .post("http://localhost:3001/cadastros", novoCadastro)
       .then((response) => {
@@ -96,30 +100,31 @@ export default function CadastroVeiculos() {
       .catch((error) => {
         console.error("Erro ao enviar cadastro:", error);
       });
+
     // Enviar e-mail de confirmação de cadastro do cliente
-    // const emailService = "service_ky5altd"; // Substitua pelo seu serviço de e-mail
-    // const templateId = "template_ckver5h"; // Substitua pelo ID do seu template de e-mail
-    // const publicKey = "bVO4o_nFWQ3h_vCRs"; // Substitua pela sua Public Key
+    const emailService = "service_ky5altd"; // Serviço de e-mail
+    const templateId = "template_ckver5h"; // Template de e-mail
+    const publicKey = "1ycY8C-XgGXmq8Vg8"; // Public Key
 
-    // const templateParams = {
-    //   to_name: dadosProprietario.nome,
-    //   message:
-    //     "É com grande satisfação que confirmamos o seu cadastro no Sistema de Gerenciamento de Veículos e Manutenção. Estamos à disposição para qualquer suporte necessário.",
-    //   email: dadosProprietario.email,
-    // };
+    const templateParams = {
+      to_name: dadosProprietario.nome,
+      message:
+        "É com grande satisfação que confirmamos o seu cadastro no Sistema de Gerenciamento de Veículos e Manutenção. Estamos à disposição para qualquer suporte necessário.",
+      email: dadosProprietario.email,
+    };
 
-    // emailjs.send(emailService, templateId, templateParams, publicKey).then(
-    //   function (response) {
-    //     console.log(
-    //       "E-mail enviado com sucesso!",
-    //       response.status,
-    //       response.text
-    //     );
-    //   },
-    //   function (error) {
-    //     console.error("Erro ao enviar o e-mail:", error);
-    //   }
-    // );
+    emailjs.send(emailService, templateId, templateParams, publicKey).then(
+      function (response) {
+        console.log(
+          "E-mail enviado com sucesso!",
+          response.status,
+          response.text
+        );
+      },
+      function (error) {
+        console.error("Erro ao enviar o e-mail:", error);
+      }
+    );
 
     // Limpar os campos do formulário ao ser enviado
     setDadosVeiculo({
@@ -145,36 +150,30 @@ export default function CadastroVeiculos() {
       telefone: "",
     });
 
-    // Lógica para enviar os dados para o backend ou realizar outras operações necessárias
-    console.log("Dados do Veículo:", dadosVeiculo);
-    console.log("Dados da Peça:", pecas);
-    console.log("Dados de Revisão:", dadosRevisao);
-    console.log("Dados do Proprietário:", dadosProprietario);
-
     // Verificação de e-mail válido
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // if (!emailRegex.test(dadosProprietario.email)) {
-    //   alert("Por favor, insira um e-mail válido.");
-    //   return;
-    // }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(dadosProprietario.email)) {
+      alert("Por favor, insira um e-mail válido.");
+      return;
+    }
 
     // Verificação de placa de veículo válida
-    // const placaRegex = /^[A-Za-z]{3}-\d{4}$/;
-    // if (!placaRegex.test(dadosVeiculo.placa)) {
-    //   alert(
-    //     "Por favor, insira uma placa de veículo válida no formato ABC-1234."
-    //   );
-    //   return;
-    // }
+    const placaRegex = /^[A-Za-z]{3}-\d{4}$/;
+    if (!placaRegex.test(dadosVeiculo.placa)) {
+      alert(
+        "Por favor, insira uma placa de veículo válida no formato ABC-1234."
+      );
+      return;
+    }
 
     // Verificação de telefone válido (formato: (00) 00000-0000)
-    // const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
-    // if (!telefoneRegex.test(dadosProprietario.telefone)) {
-    //   alert(
-    //     "Por favor, insira um número de telefone válido no formato (00) 00000-0000."
-    //   );
-    //   return;
-    // }
+    const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+    if (!telefoneRegex.test(dadosProprietario.telefone)) {
+      alert(
+        "Por favor, insira um número de telefone válido no formato (00) 00000-0000."
+      );
+      return;
+    }
   }
 
   return (
@@ -266,12 +265,12 @@ export default function CadastroVeiculos() {
             onClick={() => handleRemovePeca(index)}
           >
             <FaRegTrashAlt />
-            Remover Peça
+            <p>Remover Peça</p>
           </button>
         </div>
       ))}
       <button type="button" className="btn-add" onClick={adicionarPeca}>
-        <IoAddSharp /> Adicionar Peça
+        <IoAddSharp /> <p>Adicionar Peça</p>
       </button>
 
       <h2>Cadastro de Data de Revisão</h2>
