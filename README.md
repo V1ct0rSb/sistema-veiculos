@@ -40,7 +40,7 @@
   <li>Configure o banco de dados executando os scripts fornecidos na pasta <code>db_scripts</code>.</li>
   <li>Execute <code>npm install</code> nas pastas <code>frontend</code> e <code>backend</code> para instalar as dependências.</li>
   <li>Inicie o servidor backend com <code>npm node.js</code> na pasta <code>server</code>.</li>
-  <li>Inicie o aplicativo frontend com <code>npm start</code> na pasta <code>frontend</code>.</li>
+  <li>Inicie o aplicativo frontend com <code>npm start</code> na pasta <code>sistema-veiculos</code>.</li>
 </ol>
 
 <h2>🎓 Conclusão</h2>
