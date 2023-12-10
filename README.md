@@ -12,6 +12,7 @@
   <li><strong>Comunicação entre Frontend e Backend:</strong> Axios</li>
   <li><strong>Envio de E-mails:</strong> Email.js</li>
   <li><strong>Estilização:</strong> CSS</li>
+   <li><strong>Ícones:</strong>React Icons</li>
 </ul>
 
 <h2>🚀 Funcionalidades do Sistema</h2>
