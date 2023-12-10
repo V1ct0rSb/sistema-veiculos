@@ -2,7 +2,7 @@
 
 
 <h2>🌐 Introdução</h2>
-<p>Este documento apresenta a documentação do projeto de TCC desenvolvido, denominado "Sistema de Gerenciamento de Veículos e Manutenção". O sistema tem como objetivo oferecer uma solução eficiente para o cadastro e gerenciamento de informações relacionadas a veículos, peças, revisões e proprietários.</p>
+<p></p> O sistema tem como objetivo oferecer uma solução eficiente para o cadastro e gerenciamento de informações relacionadas a veículos, peças, revisões e proprietários.</p>
 
 <h2>🛠 Tecnologias Utilizadas</h2>
 <ul>
